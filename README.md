@@ -2,10 +2,19 @@
 A copy of ASRS Database Online for easier access & analysis.
 
 ## Dataset
+The dataset are parquet files partitioned by a `Year` column.
 
+You can use Pandas to read the dataset in Python (`pyarrow` or `fastparquet` needs to be installed first):
+```
+import pandas as pd
+
+ASRS_df = pd.read_parquet("path/to/ASRS.parquet.zip")
+```
 
 ## Schema
-In this dataset, the columns names are in the format of table names plus the original field names, separated by double underscores, e.g., `TableName__FieldName`.
+In this dataset, the columns names are in the format of table names plus the original field names, separated by double underscores, e.g., `TableName__FieldName`. Two changes are introduced to the orignal column names:
+- Spaces are replaced with `_`.
+- `/` are replaced with `_And_`.
 
 To keep the data to its original format as much as possible, all columns are parsed and read as `str`. Besides the orignal columns, a `Year` column of the `int` type is added for conveniences of filtering and partition. Below are a complete list of available columns.
 
